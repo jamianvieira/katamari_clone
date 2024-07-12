@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtly5owpqgfub"]
+
+[ext_resource type="MeshLibrary" uid="uid://dkxoxyq1xvxie" path="res://assets/models/blocks.meshlib" id="1_6tdxt"]
+[ext_resource type="PackedScene" uid="uid://u0y6xsbjt6rh" path="res://player/ball.tscn" id="2_yi4tn"]
+
+[sub_resource type="Environment" id="Environment_8c4e3"]
+background_mode = 2
+background_color = Color(0.415662, 0.54992, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 2.89
+reflected_light_source = 2
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ijfc4"]
+
+[node name="Level01" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01593, 1, -1.06513)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_6tdxt")
+cell_size = Vector3(4, 4, 4)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(0, 1, 0, 1, 1, 1, 65535, 1, 655361, 0, 2, 1441793, 65535, 2, 655362, 1, 2, 1441794, 1, 0, 2, 65535, 0, 1048578, 0, 0, 1048576, 0, 65535, 1048576, 0, 65534, 0, 0, 65533, 4, 65537, 65531, 0, 131071, 65531, 0, 65536, 65531, 0, 131071, 65529, 1048576, 65536, 65529, 0, 65537, 65529, 0, 131071, 65528, 0, 65536, 65528, 0, 65537, 65528, 0, 65536, 65527, 5, 131071, 65527, 0, 131071, 65526, 0, 65536, 65526, 0, 65537, 65526, 0, 65537, 65527, 0, 65536, 65532, 0, 131071, 65532, 0, 65537, 65532, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Ball" parent="." instance=ExtResource("2_yi4tn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8c4e3")
+camera_attributes = SubResource("CameraAttributesPractical_ijfc4")
