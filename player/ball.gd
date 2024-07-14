@@ -22,8 +22,4 @@ func _physics_process(delta):
 	elif Input.is_action_pressed("right"):
 		angular_velocity.z -= rolling_force*delta
 
-var scene = preload("res://player/box_stuck.tscn")
-func _on_box_stick_to():
-	var box_instance = scene.instantiate()
-	add_child(box_instance)
-	print("stick to it")
+
