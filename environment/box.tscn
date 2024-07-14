@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://csdpowgvmh7mg"]
+[gd_scene load_steps=3 format=3 uid="uid://csdpowgvmh7mg"]
 
 [ext_resource type="Script" path="res://environment/box.gd" id="1_3pgw7"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6x733"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_7w71e"]
+[ext_resource type="PackedScene" uid="uid://xwp80m0b6cpo" path="res://player/box_stuck.tscn" id="2_m1yom"]
 
 [node name="Box" type="RigidBody3D"]
 collision_layer = 4
@@ -13,10 +10,6 @@ max_contacts_reported = 10
 contact_monitor = true
 script = ExtResource("1_3pgw7")
 
-[node name="BoxCollision" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_6x733")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="BoxCollision"]
-mesh = SubResource("BoxMesh_7w71e")
+[node name="BoxCollision" parent="." instance=ExtResource("2_m1yom")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

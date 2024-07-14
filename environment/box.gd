@@ -6,9 +6,5 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.name == "Ball":                                   
-		print("collided")
-		#emit_signal("stick_to")
-		var new_parent = get_node("../Ball")
-		get_parent().remove_child(self)
-		new_parent.add_child(self)
-		#queue_free()
+		$BoxCollision.reparent(body)
+		queue_free()

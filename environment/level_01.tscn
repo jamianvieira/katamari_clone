@@ -30,6 +30,7 @@ cell_size = Vector3(4, 4, 4)
 cell_center_x = false
 cell_center_y = false
 cell_center_z = false
+collision_mask = 6
 data = {
 "cells": PackedInt32Array(0, 1, 0, 1, 1, 1, 65535, 1, 655361, 0, 2, 1441793, 65535, 2, 655362, 1, 2, 1441794, 1, 0, 2, 65535, 0, 1048578, 0, 0, 1048576, 0, 65535, 1048576, 0, 65534, 0, 0, 65533, 4, 65537, 65531, 0, 131071, 65531, 0, 65536, 65531, 0, 131071, 65529, 1048576, 65536, 65529, 0, 65537, 65529, 0, 131071, 65528, 0, 65536, 65528, 0, 65537, 65528, 0, 65536, 65527, 5, 131071, 65527, 0, 131071, 65526, 0, 65536, 65526, 0, 65537, 65526, 0, 65537, 65527, 0, 65536, 65532, 0, 131071, 65532, 0, 65537, 65532, 0)
 }
@@ -56,4 +57,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
 shape = SubResource("BoxShape3D_0aayb")
 
 [node name="Box" parent="." instance=ExtResource("3_sr2l4")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.70739, 1.18325, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10612, 1.04279, 1.8364)
+
+[node name="Box2" parent="." instance=ExtResource("3_sr2l4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.60464, 1.04279, 2.60913)
+
+[node name="Box3" parent="." instance=ExtResource("3_sr2l4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.60464, 1.04279, 0.147117)
+
+[node name="Box4" parent="." instance=ExtResource("3_sr2l4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.60464, 1.04279, 1.51982)
+
+[connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
