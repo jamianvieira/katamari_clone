@@ -4,13 +4,19 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6x733"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_n6i0k"]
+[sub_resource type="BoxMesh" id="BoxMesh_7w71e"]
 
-[node name="RigidBody3D" type="RigidBody3D"]
+[node name="Box" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 3
+max_contacts_reported = 10
+contact_monitor = true
 script = ExtResource("1_3pgw7")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="BoxCollision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_6x733")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_n6i0k")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BoxCollision"]
+mesh = SubResource("BoxMesh_7w71e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

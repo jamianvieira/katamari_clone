@@ -15,6 +15,11 @@ run/main_scene="res://environment/level_01.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+
 [input]
 
 forward={
@@ -45,9 +50,12 @@ jump={
 
 [layer_names]
 
-3d_physics/layer_1="Ball"
+3d_physics/layer_1="environment"
+3d_physics/layer_2="player"
+3d_physics/layer_3="pickups"
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+anti_aliasing/quality/msaa_3d=2

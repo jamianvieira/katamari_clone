@@ -1,17 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtly5owpqgfub"]
+[gd_scene load_steps=7 format=3 uid="uid://dtly5owpqgfub"]
 
 [ext_resource type="MeshLibrary" uid="uid://dkxoxyq1xvxie" path="res://assets/models/blocks.meshlib" id="1_6tdxt"]
 [ext_resource type="PackedScene" uid="uid://u0y6xsbjt6rh" path="res://player/ball.tscn" id="2_yi4tn"]
+[ext_resource type="PackedScene" uid="uid://csdpowgvmh7mg" path="res://environment/box.tscn" id="3_sr2l4"]
+[ext_resource type="Script" path="res://environment/DeathZone.gd" id="4_ioifh"]
 
-[sub_resource type="Environment" id="Environment_8c4e3"]
-background_mode = 2
-background_color = Color(0.415662, 0.54992, 1, 1)
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 2.89
-reflected_light_source = 2
+[sub_resource type="Environment" id="Environment_dd3ts"]
+background_mode = 1
+background_color = Color(0.169109, 0.374741, 1, 1)
+ambient_light_color = Color(0.168627, 0.376471, 1, 1)
+tonemap_mode = 3
+fog_enabled = true
+fog_light_color = Color(0.442147, 0.606632, 0.934797, 1)
+fog_light_energy = 0.5
+adjustment_enabled = true
+adjustment_brightness = 0.51
+adjustment_contrast = 1.5
+adjustment_saturation = 1.2
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ijfc4"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0aayb"]
+size = Vector3(150, 1, 150)
 
 [node name="Level01" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01593, 1, -1.06513)
@@ -30,6 +38,24 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 [node name="Ball" parent="." instance=ExtResource("2_yi4tn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5, -0.75, 0.433013, 0, 0.5, 0.866025, -0.866025, -0.433013, 0.25, 0, 5, 0)
+light_color = Color(0.994634, 0.963239, 0.635396, 1)
+light_energy = 2.0
+shadow_enabled = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_8c4e3")
-camera_attributes = SubResource("CameraAttributesPractical_ijfc4")
+environment = SubResource("Environment_dd3ts")
+
+[node name="DeathZone" type="Area3D" parent="."]
+collision_mask = 2
+script = ExtResource("4_ioifh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+shape = SubResource("BoxShape3D_0aayb")
+
+[node name="Box" parent="." instance=ExtResource("3_sr2l4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.70739, 1.18325, 0)
+
+[connection signal="stick_to" from="Box" to="Ball" method="_on_box_stick_to"]
